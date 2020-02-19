@@ -4,26 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class PhoneBook implements Parcelable {
-    protected PhoneBook(Parcel in) {
-        id = in.readInt();
-        fname = in.readString();
-        lname = in.readString();
-        address = in.readString();
-        PhoneNumber = in.readString();
-        currentDate = in.readString();
-    }
 
-    public static final Creator<PhoneBook> CREATOR = new Creator<PhoneBook>() {
-        @Override
-        public PhoneBook createFromParcel(Parcel in) {
-            return new PhoneBook(in);
-        }
-
-        @Override
-        public PhoneBook[] newArray(int size) {
-            return new PhoneBook[size];
-        }
-    };
+    int id;
+    String fname;
+    String lname;
+    String address;
+    String PhoneNumber;
 
     public int getId() {
         return id;
@@ -65,19 +51,8 @@ public class PhoneBook implements Parcelable {
         PhoneNumber = phoneNumber;
     }
 
-    int id;
-    String fname;
-    String lname;
-    String address;
-    String PhoneNumber;
-    String currentDate;
-
-    public String getCurrentDate() {
-        return currentDate;
-    }
-
-    public void setCurrentDate(String currentDate) {
-        this.currentDate = currentDate;
+    public static Creator<PhoneBook> getCREATOR() {
+        return CREATOR;
     }
 
     public PhoneBook(int id, String fname, String lname, String address, String phoneNumber) {
@@ -86,12 +61,14 @@ public class PhoneBook implements Parcelable {
         this.lname = lname;
         this.address = address;
         this.PhoneNumber = phoneNumber;
-        this.currentDate = currentDate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    protected PhoneBook(Parcel in) {
+        id = in.readInt();
+        fname = in.readString();
+        lname = in.readString();
+        address = in.readString();
+        PhoneNumber = in.readString();
     }
 
     @Override
@@ -101,6 +78,22 @@ public class PhoneBook implements Parcelable {
         dest.writeString(lname);
         dest.writeString(address);
         dest.writeString(PhoneNumber);
-        dest.writeString(currentDate);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<PhoneBook> CREATOR = new Creator<PhoneBook>() {
+        @Override
+        public PhoneBook createFromParcel(Parcel in) {
+            return new PhoneBook(in);
+        }
+
+        @Override
+        public PhoneBook[] newArray(int size) {
+            return new PhoneBook[size];
+        }
+    };
 }
