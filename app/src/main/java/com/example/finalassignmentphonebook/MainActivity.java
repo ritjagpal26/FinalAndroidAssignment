@@ -35,8 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnAddContact:
+                PhoneBookActivity phoneBookActivity = new PhoneBookActivity();
                 mDatabase.addContact(editTextFirstName.getText().toString().trim(),editTextLastName.getText().toString().trim()
                         ,editTextAddress.getText().toString().trim(),Integer.valueOf(editTextPhoneNumber.getText().toString().trim()));
+
+
                 if (editTextFirstName.getText().toString().isEmpty() || editTextLastName.getText().toString().isEmpty() ) {
                     editTextFirstName.setError("Enter Full Name field is mandatory");
                     editTextFirstName.requestFocus();
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     editTextPhoneNumber.requestFocus();
                     return;
                 }
+
+
                 break;
             case R.id.tvViewContacts:
                 // start activity to another activity to see the list of employees

@@ -38,6 +38,8 @@ public class PhonebookAdapter extends ArrayAdapter {
         TextView tvlastname = v.findViewById(R.id.tvlastname);
         TextView tvphonenumber = v.findViewById(R.id.tvPhoneNumber);
         TextView tvaddress = v.findViewById(R.id.tvAddress);
+//        TextView tvCount = v.findViewById(R.id.tvcou);
+
 
         final PhoneBook phoneBook = phoneBooks.get(position);
         tvFName.setText(phoneBook.getFname());
@@ -45,6 +47,7 @@ public class PhonebookAdapter extends ArrayAdapter {
         tvlastname.setText(phoneBook.getLname());
         tvaddress.setText(phoneBook.getAddress());
 
+        mDatabase.getAllContacts();
 
         return v;
     }

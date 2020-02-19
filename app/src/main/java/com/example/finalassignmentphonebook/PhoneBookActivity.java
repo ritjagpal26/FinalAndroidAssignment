@@ -43,6 +43,7 @@ public class PhoneBookActivity extends AppCompatActivity {
         });
         loadphonebook();
     }
+
     private void loadphonebook() {
 
         Cursor cursor = mDatabase.getAllContacts();
@@ -66,7 +67,7 @@ public class PhoneBookActivity extends AppCompatActivity {
 
             PhonebookAdapter phonebookAdapter = new PhonebookAdapter(this, R.layout.list_layout_of_contacts, phoneBookList, mDatabase);
             listView.setAdapter(phonebookAdapter);
-
+            phonebookAdapter.notifyDataSetChanged();
 
 
         }

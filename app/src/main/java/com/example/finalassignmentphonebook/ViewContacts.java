@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ViewContacts extends AppCompatActivity {
@@ -48,6 +49,7 @@ public class ViewContacts extends AppCompatActivity {
         updatebtn.setOnClickListener(new View.OnClickListener() {
            @Override
           public void onClick(View v) {
+
 
                Intent myintent = new Intent(ViewContacts.this, UpdateContact.class);
 

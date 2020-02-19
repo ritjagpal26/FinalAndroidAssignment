@@ -13,7 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+
 public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
+    List<PhoneBook> phoneBookList;
+    SQLiteDatabase mDatabase;
 
 
 
@@ -74,8 +77,9 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
         cv.put(COLUMN_ADDRESS, address);
         cv.put(COLUMN_DATE, currentdate);
         cv.put(COLUMN_PHONENUMBER, String.valueOf(phonenumber));
-
+        getAllContacts();
         return sqLiteDatabase.insert(TABLE_NAME, null, cv) != -1;
+
     }
 
     Cursor getAllContacts() {
@@ -106,10 +110,11 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
 
 
 
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
