@@ -19,7 +19,7 @@ import java.util.List;
 public class ViewContacts extends AppCompatActivity {
     static SQLiteOpenHelperClass mdatabase;
     List<PhoneBook> phoneBookList;
-
+ Context context;
     TextView firstname , lastname,phonenumber, address;
     Button updatebtn;
     Button  deletebtn;
@@ -78,8 +78,9 @@ public class ViewContacts extends AppCompatActivity {
                finish();
                PhonebookAdapter phonebookAdapter = new PhonebookAdapter(ViewContacts.this, R.layout.list_layout_of_contacts, phoneBookList, mdatabase);
                phonebookAdapter.notifyDataSetChanged();
-               reopen(ViewContacts.this);
+               reopen(context);
                loadphonebook();
+               finish();
 
             }
        });
@@ -109,9 +110,7 @@ public class ViewContacts extends AppCompatActivity {
             // show items in a listView
             // we use a custom adapter to show employees
 
-            PhonebookAdapter phonebookAdapter = new PhonebookAdapter(this, R.layout.list_layout_of_contacts, phoneBookList, mdatabase);
-            listView.setAdapter(phonebookAdapter);
-            phonebookAdapter.notifyDataSetChanged();
+
 
 
         }

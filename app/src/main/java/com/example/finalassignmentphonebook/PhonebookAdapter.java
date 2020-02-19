@@ -79,5 +79,9 @@ public class PhonebookAdapter extends ArrayAdapter {
 
         }
     }
+    public void filterList(List<PhoneBook> filteredList) {
+        phoneBooks =  filteredList;
+        notifyDataSetChanged();
+    }
 
 }

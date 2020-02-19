@@ -82,6 +82,8 @@ PhonebookAdapter phoneadapter;
         {
             if(phoneBook.getFname().toLowerCase().contains( s.toLowerCase() )
                     || phoneBook.getLname().toLowerCase().contains( s.toLowerCase() )
+                    || phoneBook.getAddress().toLowerCase().contains( s.toLowerCase() )
+                    || phoneBook.getPhoneNumber().toLowerCase().contains( s.toLowerCase() )
 
 
             )
@@ -89,7 +91,7 @@ PhonebookAdapter phoneadapter;
                 filteredList.add( phoneBook );
             }
         }
-      filterList(filteredList);
+      phoneadapter.filterList(filteredList);
 
 
 
@@ -100,10 +102,7 @@ PhonebookAdapter phoneadapter;
         mDatabase = null;
         mDatabase = new SQLiteOpenHelperClass(context);
     }
-    public void filterList(List<PhoneBook> filteredList) {
-        phoneBookList =  filteredList;
-        phoneadapter.notifyDataSetChanged();
-    }
+
 
 
     private void loadphonebook() {
