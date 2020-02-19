@@ -20,7 +20,7 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
 
 
 
-    private static final String NAME_of_DATABASE = "phonebookdatabse";
+    private static final String NAME_of_DATABASE = "phonebooksof";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "phonebook";
     private static final String COLUMN_ID = "id";
@@ -44,8 +44,8 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
                 COLUMN_F_NAME + " varchar(200) NOT NULL, " +
                 COLUMN_L_NAME + " varchar(200) NOT NULL, " +
                 COLUMN_ADDRESS + " varchar(200) NOT NULL, " +
-                COLUMN_DATE + " varchar(200) NOT NULL, " +
-                COLUMN_PHONENUMBER + " INTEGER NOT NULL);";
+
+                COLUMN_PHONENUMBER + " varchar(200) NOT NULL);";
 
                 db.execSQL(sql);
 
@@ -59,7 +59,7 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-    boolean addContact(String fname, String lname, String  address , int phonenumber) {
+    boolean addContact(String fname, String lname, String  address , String phonenumber) {
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
@@ -75,7 +75,6 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
         cv.put(COLUMN_F_NAME, fname);
         cv.put(COLUMN_L_NAME, lname);
         cv.put(COLUMN_ADDRESS, address);
-        cv.put(COLUMN_DATE, currentdate);
         cv.put(COLUMN_PHONENUMBER, String.valueOf(phonenumber));
         getAllContacts();
         return sqLiteDatabase.insert(TABLE_NAME, null, cv) != -1;
@@ -87,7 +86,7 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
         return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
-    boolean updateContacts(int id ,String fname, String lname,  String  address , int phonenumber) {
+    boolean updateContacts(int id ,String fname, String lname,  String  address , String phonenumber) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -106,6 +105,18 @@ public class SQLiteOpenHelperClass extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         // the delete method returns the number of rows affected
         return sqLiteDatabase.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0;
+    }
+
+    public int getProfilesCount() {
+        Cursor cursor = getAllContacts();
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count += cursor.getCount();
+            } while (cursor.moveToNext());
+            cursor.close();
+            return count;
+
+
     }
 
 

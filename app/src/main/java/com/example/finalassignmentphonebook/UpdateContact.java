@@ -12,6 +12,7 @@ public class UpdateContact extends AppCompatActivity {
     EditText editTextFirstName, editTextLastName,editTextAddress,editTextPhoneNumber;
     Button updateContact;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class UpdateContact extends AppCompatActivity {
         editTextLastName = findViewById(R.id.editTextLastNameinupdate);
         editTextAddress = findViewById(R.id.editTextAddressinupdate);
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumberinupdate);
+
 
         Intent myintent = getIntent();
         final PhoneBook phoneBook =  myintent.getParcelableExtra("update");
@@ -35,13 +37,15 @@ public class UpdateContact extends AppCompatActivity {
         final SQLiteOpenHelperClass mDatabase = new SQLiteOpenHelperClass(this);
 
 
-        updateContact =  findViewById(R.id.btnUpdateContact);
+
+        updateContact =  findViewById(R.id.btnupdateinupdate);
 
         updateContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDatabase.updateContacts(phoneBook.getId(),editTextFirstName.getText().toString().trim(),editTextLastName.getText().toString().trim(),
-                        editTextAddress.getText().toString().trim(),Integer.valueOf(editTextPhoneNumber.getText().toString()));
+                        editTextAddress.getText().toString().trim(),editTextPhoneNumber.getText().toString());
+                finish();
             }
         });
 

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnAddContact:
                 PhoneBookActivity phoneBookActivity = new PhoneBookActivity();
                 mDatabase.addContact(editTextFirstName.getText().toString().trim(),editTextLastName.getText().toString().trim()
-                        ,editTextAddress.getText().toString().trim(),Integer.valueOf(editTextPhoneNumber.getText().toString().trim()));
+                        ,editTextAddress.getText().toString().trim(),editTextPhoneNumber.getText().toString().trim());
 
 
                 if (editTextFirstName.getText().toString().isEmpty() || editTextLastName.getText().toString().isEmpty() ) {

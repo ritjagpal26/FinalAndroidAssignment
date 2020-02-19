@@ -9,7 +9,7 @@ public class PhoneBook implements Parcelable {
         fname = in.readString();
         lname = in.readString();
         address = in.readString();
-        PhoneNumber = in.readInt();
+        PhoneNumber = in.readString();
         currentDate = in.readString();
     }
 
@@ -57,11 +57,11 @@ public class PhoneBook implements Parcelable {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return PhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         PhoneNumber = phoneNumber;
     }
 
@@ -69,7 +69,7 @@ public class PhoneBook implements Parcelable {
     String fname;
     String lname;
     String address;
-    int PhoneNumber;
+    String PhoneNumber;
     String currentDate;
 
     public String getCurrentDate() {
@@ -80,12 +80,12 @@ public class PhoneBook implements Parcelable {
         this.currentDate = currentDate;
     }
 
-    public PhoneBook(int id, String fname, String lname, String address, int phoneNumber, String currentDate) {
+    public PhoneBook(int id, String fname, String lname, String address, String phoneNumber) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.address = address;
-        PhoneNumber = phoneNumber;
+        this.PhoneNumber = phoneNumber;
         this.currentDate = currentDate;
     }
 
@@ -100,7 +100,7 @@ public class PhoneBook implements Parcelable {
         dest.writeString(fname);
         dest.writeString(lname);
         dest.writeString(address);
-        dest.writeInt(PhoneNumber);
+        dest.writeString(PhoneNumber);
         dest.writeString(currentDate);
     }
 }

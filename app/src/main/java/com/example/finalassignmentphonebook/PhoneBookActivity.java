@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class PhoneBookActivity extends AppCompatActivity {
     SQLiteOpenHelperClass mDatabase;
     List<PhoneBook> phoneBookList;
     ListView listView;
+    TextView tvcount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class PhoneBookActivity extends AppCompatActivity {
 
 
         listView = findViewById(R.id.lvContacts);
+        tvcount = findViewById(R.id.countnote);
         phoneBookList = new ArrayList<>();
         mDatabase = new SQLiteOpenHelperClass(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,6 +46,8 @@ public class PhoneBookActivity extends AppCompatActivity {
             }
         });
         loadphonebook();
+//        .setText("hello");
+        tvcount.setText(String.valueOf(mDatabase.getProfilesCount()));
     }
 
     private void loadphonebook() {
@@ -55,8 +61,7 @@ public class PhoneBookActivity extends AppCompatActivity {
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getInt(4),
-                        cursor.getString(5)
+                        cursor.getString(4)
 
                 ));
             } while (cursor.moveToNext());
